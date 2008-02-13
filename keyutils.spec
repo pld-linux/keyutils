@@ -7,6 +7,7 @@ License:	LGPL v2+ (library), GPL v2+ (utility)
 Group:		Base
 Source0:	http://people.redhat.com/~dhowells/keyutils/%{name}-%{version}.tar.bz2
 # Source0-md5:	227086776abccc3ee34599591db563f0
+BuildRequires:	rpmbuild(macros) >= 1.402
 Requires:	%{name}-libs = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -80,21 +81,6 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT \
 	LIBDIR=/%{_lib} \
 	USRLIBDIR=%{_libdir}
-
-rm -f $RPM_BUILD_ROOT%{_mandir}/man3/keyctl_assume_authority.3
-echo ".so keyctl_instantiate.3" > $RPM_BUILD_ROOT%{_mandir}/man3/keyctl_assume_authority.3
-
-rm -f $RPM_BUILD_ROOT%{_mandir}/man3/keyctl_describe_alloc.3
-echo ".so keyctl_describe.3" > $RPM_BUILD_ROOT%{_mandir}/man3/keyctl_describe_alloc.3
-
-rm -f $RPM_BUILD_ROOT%{_mandir}/man3/keyctl_negate.3
-echo ".so keyctl_instantiate.3" > $RPM_BUILD_ROOT%{_mandir}/man3/keyctl_negate.3
-
-rm -f $RPM_BUILD_ROOT%{_mandir}/man3/keyctl_read_alloc.3
-echo ".so keyctl_read.3" > $RPM_BUILD_ROOT%{_mandir}/man3/keyctl_read_alloc.3
-
-rm -f $RPM_BUILD_ROOT%{_mandir}/man3/keyctl_unlink.3
-echo ".so keyctl_link.3" > $RPM_BUILD_ROOT%{_mandir}/man3/keyctl_unlink.3
 
 %clean
 rm -rf $RPM_BUILD_ROOT
