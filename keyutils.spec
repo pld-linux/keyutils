@@ -1,3 +1,11 @@
+#
+# Conditional build:
+%if "%{pld_release}" == "ac"
+%bcond_with		glibc24		# build for older glibc
+%else
+%bcond_without	glibc24		# build for older glibc
+%endif
+
 Summary:	Linux Key Management Utilities
 Summary(pl.UTF-8):	Narzędzia do linuksowego zarządzania kluczami
 Name:		keyutils
@@ -26,7 +34,7 @@ Summary:	Key utilities library
 Summary(pl.UTF-8):	Biblioteka narzędzi do zarządzania kluczami
 License:	LGPL v2+
 Group:		Libraries
-Requires:	glibc >= 6:2.4
+%{?with_glibc24:Requires:	glibc >= 6:2.4}
 
 %description libs
 This package provides a wrapper library for the key management
@@ -71,6 +79,9 @@ Statyczna biblioetka do zarządzania linuksowymi kluczami.
 	CC="%{__cc}" \
 	LIBDIR=/%{_lib} \
 	USRLIBDIR=%{_libdir} \
+%if %{without glibc24}
+	NO_GLIBC_KEYERR=1 \
+%endif
 	CFLAGS="-Wall %{rpmcflags}" \
 	LDFLAGS="%{rpmldflags}"
 
