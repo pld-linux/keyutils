@@ -1,7 +1,7 @@
 #
 # Conditional build:
 %if "%{pld_release}" == "ac"
-%bcond_with		glibc24		# build for older glibc
+%bcond_with	glibc24		# build for older glibc
 %else
 %bcond_without	glibc24		# build for older glibc
 %endif
@@ -9,13 +9,14 @@
 Summary:	Linux Key Management Utilities
 Summary(pl.UTF-8):	Narzędzia do linuksowego zarządzania kluczami
 Name:		keyutils
-Version:	1.4
-Release:	3
+Version:	1.5.1
+Release:	1
 License:	LGPL v2+ (library), GPL v2+ (utility)
 Group:		Base
 Source0:	http://people.redhat.com/~dhowells/keyutils/%{name}-%{version}.tar.bz2
-# Source0-md5:	e168c1bdaf5aa93c2cbf8a5e7f8ef27b
+# Source0-md5:	3ab62455a37a20f73b2d6cc794aaba13
 BuildRequires:	rpmbuild(macros) >= 1.402
+%{!?with_glibc24:BuildRequires:	glibc-devel >= 6:2.4}
 Requires:	%{name}-libs = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -60,16 +61,16 @@ zarządzających kluczami.
 
 %package static
 Summary:	Static Linux key management library
-Summary(pl.UTF-8):	Statyczna biblioetka do zarządzania linuksowymi kluczami
+Summary(pl.UTF-8):	Statyczna biblioteka do zarządzania linuksowymi kluczami
 License:	LGPL v2+
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
-Static linux key management libraries.
+Static linux key management library.
 
 %description static -l pl.UTF-8
-Statyczna biblioetka do zarządzania linuksowymi kluczami.
+Statyczna biblioteka do zarządzania linuksowymi kluczami.
 
 %prep
 %setup -q
@@ -103,11 +104,13 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc README
 %attr(755,root,root) /bin/keyctl
+%attr(755,root,root) /sbin/key.dns_resolver
 %attr(755,root,root) /sbin/request-key
 %dir %{_datadir}/keyutils
 %attr(755,root,root) %{_datadir}/keyutils/*.sh
 %{_mandir}/man1/keyctl.1*
 %{_mandir}/man5/request-key.conf.5*
+%{_mandir}/man8/key.dns_resolver.8*
 %{_mandir}/man8/request-key.8*
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/request-key.conf
 
@@ -121,6 +124,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkeyutils.so
 %{_includedir}/keyutils.h
 %{_mandir}/man3/keyctl_*.3*
+%{_mandir}/man3/recursive_key_scan.3*
+%{_mandir}/man3/recursive_session_key_scan.3*
 
 %files static
 %defattr(644,root,root,755)
