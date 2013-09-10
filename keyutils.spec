@@ -9,12 +9,12 @@
 Summary:	Linux Key Management Utilities
 Summary(pl.UTF-8):	Narzędzia do linuksowego zarządzania kluczami
 Name:		keyutils
-Version:	1.5.5
+Version:	1.5.6
 Release:	1
 License:	LGPL v2+ (library), GPL v2+ (utility)
 Group:		Base
 Source0:	http://people.redhat.com/~dhowells/keyutils/%{name}-%{version}.tar.bz2
-# Source0-md5:	9e8ab5164bc8f84be148761cc89e9d6f
+# Source0-md5:	2a459462c7ebdff0ce2eb398b92ced9c
 BuildRequires:	rpmbuild(macros) >= 1.402
 %{!?with_glibc24:BuildRequires:	glibc-devel >= 6:2.4}
 Requires:	%{name}-libs = %{version}-%{release}
@@ -123,6 +123,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libkeyutils.so
 %{_includedir}/keyutils.h
+%{_mandir}/man3/keyctl.3*
 %{_mandir}/man3/keyctl_*.3*
 %{_mandir}/man3/recursive_key_scan.3*
 %{_mandir}/man3/recursive_session_key_scan.3*
