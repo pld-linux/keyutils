@@ -1,0 +1,10 @@
+--- keyutils-1.5.8/request-key.conf~	2013-10-04 11:50:21.000000000 +0200
++++ keyutils-1.5.8/request-key.conf	2014-01-21 19:56:52.935066507 +0100
+@@ -38,4 +38,7 @@
+ create  user    debug:*         revoked         /bin/keyctl reject %k 30 %c %S
+ create	user	debug:loop:*	*		|/bin/cat
+ create	user	debug:*		*		/usr/share/keyutils/request-key-debug.sh %k %d %c %S
++create	id_resolver *		*		/sbin/nfsidmap -t 600 %k %d
++create	cifs.spnego *		*		/usr/sbin/cifs.upcall -c %k
++create	dns_resolver *		*		/usr/sbin/cifs.upcall %k
+ negate	*	*		*		/bin/keyctl negate %k 30 %S
