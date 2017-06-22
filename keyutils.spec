@@ -9,12 +9,12 @@
 Summary:	Linux Key Management Utilities
 Summary(pl.UTF-8):	Narzędzia do linuksowego zarządzania kluczami
 Name:		keyutils
-Version:	1.5.9
-Release:	2
+Version:	1.5.10
+Release:	1
 License:	LGPL v2+ (library), GPL v2+ (utility)
 Group:		Base
 Source0:	http://people.redhat.com/~dhowells/keyutils/%{name}-%{version}.tar.bz2
-# Source0-md5:	7f8ac985c45086b5fbcd12cecd23cf07
+# Source0-md5:	3771676319bc7b84b1549b5c63ff5243
 Patch0:		helpers.patch
 BuildRequires:	rpmbuild(macros) >= 1.402
 %{!?with_glibc24:BuildRequires:	glibc-devel >= 6:2.4}
@@ -130,14 +130,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/find_key_by_type_and_name.3*
 %{_mandir}/man3/recursive_key_scan.3*
 %{_mandir}/man3/recursive_session_key_scan.3*
-%{_mandir}/man7/keyrings.7*
 %{_mandir}/man7/keyutils.7*
-%{_mandir}/man7/persistent-keyring.7*
-%{_mandir}/man7/process-keyring.7*
-%{_mandir}/man7/session-keyring.7*
-%{_mandir}/man7/thread-keyring.7*
-%{_mandir}/man7/user-keyring.7*
-%{_mandir}/man7/user-session-keyring.7*
 
 %files static
 %defattr(644,root,root,755)
