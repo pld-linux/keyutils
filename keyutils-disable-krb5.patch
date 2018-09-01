@@ -1,0 +1,19 @@
+--- keyutils-1.5.11/Makefile.orig	2018-05-11 16:30:30.000000000 +0200
++++ keyutils-1.5.11/Makefile	2018-09-01 20:26:06.474216636 +0200
+@@ -95,7 +95,7 @@
+ # Normal build rule
+ #
+ ###############################################################################
+-all: keyctl request-key key.dns_resolver
++all: keyctl request-key
+ 
+ ###############################################################################
+ #
+@@ -176,7 +176,6 @@
+ 	$(INSTALL) -D keyctl $(DESTDIR)$(BINDIR)/keyctl
+ 	$(INSTALL) -D request-key $(DESTDIR)$(SBINDIR)/request-key
+ 	$(INSTALL) -D request-key-debug.sh $(DESTDIR)$(SHAREDIR)/request-key-debug.sh
+-	$(INSTALL) -D key.dns_resolver $(DESTDIR)$(SBINDIR)/key.dns_resolver
+ 	$(INSTALL) -D -m 0644 request-key.conf $(DESTDIR)$(ETCDIR)/request-key.conf
+ 	mkdir -p $(DESTDIR)$(ETCDIR)/request-key.d
+ 	mkdir -p $(DESTDIR)$(MAN1)
