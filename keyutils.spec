@@ -9,6 +9,7 @@
 Summary:	Linux Key Management Utilities
 Summary(pl.UTF-8):	Narzędzia do linuksowego zarządzania kluczami
 Name:		keyutils
+# for 1.5.11 see DEVEL branch (but there key.dns_resolver requires MIT Kerberos)
 Version:	1.5.10
 Release:	1
 License:	LGPL v2+ (library), GPL v2+ (utility)
