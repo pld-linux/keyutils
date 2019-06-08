@@ -5,23 +5,21 @@
 %else
 %bcond_without	glibc24		# build for older glibc
 %endif
-%bcond_without	krb5		# key.dns_resolver (requires MIT Kerberos)
 
 Summary:	Linux Key Management Utilities
 Summary(pl.UTF-8):	Narzędzia do linuksowego zarządzania kluczami
 Name:		keyutils
-Version:	1.5.11
+Version:	1.6
 Release:	1
 License:	LGPL v2+ (library), GPL v2+ (utility)
 Group:		Base
 Source0:	http://people.redhat.com/~dhowells/keyutils/%{name}-%{version}.tar.bz2
-# Source0-md5:	bcc0984181572461850a37c39f8b167a
+# Source0-md5:	191987b0ab46bb5b50efd70a6e6ce808
 Patch0:		helpers.patch
-Patch1:		%{name}-disable-krb5.patch
+Patch1:		%{name}-pkgconfigdir.patch
 URL:		https://git.kernel.org/pub/scm/linux/kernel/git/dhowells/keyutils.git
 BuildRequires:	rpmbuild(macros) >= 1.402
 %{?with_glibc24:BuildRequires:	glibc-devel >= 6:2.4}
-%{?with_krb5:BuildRequires:	krb5-devel}
 Requires:	%{name}-libs = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -80,9 +78,7 @@ Statyczna biblioteka do zarządzania linuksowymi kluczami.
 %prep
 %setup -q
 %patch0 -p1
-%if %{without krb5}
 %patch1 -p1
-%endif
 
 %build
 %{__make} -j1 \
@@ -113,9 +109,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc README
 %attr(755,root,root) /bin/keyctl
-%if %{with krb5}
 %attr(755,root,root) /sbin/key.dns_resolver
-%endif
 %attr(755,root,root) /sbin/request-key
 %dir %{_datadir}/keyutils
 %attr(755,root,root) %{_datadir}/keyutils/*.sh
@@ -134,11 +128,13 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libkeyutils.so
 %{_includedir}/keyutils.h
+%{_pkgconfigdir}/libkeyutils.pc
 %{_mandir}/man3/keyctl.3*
 %{_mandir}/man3/keyctl_*.3*
 %{_mandir}/man3/find_key_by_type_and_name.3*
 %{_mandir}/man3/recursive_key_scan.3*
 %{_mandir}/man3/recursive_session_key_scan.3*
+%{_mandir}/man7/asymmetric-key.7*
 %{_mandir}/man7/keyutils.7*
 
 %files static

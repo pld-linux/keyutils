@@ -1,0 +1,20 @@
+--- keyutils-1.6/Makefile.orig	2018-11-13 17:28:30.000000000 +0100
++++ keyutils-1.6/Makefile	2019-06-08 17:26:50.685712296 +0200
+@@ -80,7 +80,7 @@
+ endif
+ 
+ PKGCONFIG 	:= libkeyutils.pc
+-PKGCONFIG_DIR 	:= pkgconfig
++PKGCONFIG_DIR 	:= $(USRLIBDIR)/pkgconfig
+ 
+ ###############################################################################
+ #
+@@ -192,7 +192,7 @@
+ 	-e 's,@libdir\@,$(USRLIBDIR),g' \
+ 	-e 's,@includedir\@,$(INCLUDEDIR),g' \
+ 	< $(PKGCONFIG).in > $(PKGCONFIG) || rm $(PKGCONFIG)
+-	$(INSTALL) -D $(PKGCONFIG) $(DESTDIR)$(LIBDIR)/$(PKGCONFIG_DIR)/$(PKGCONFIG)
++	$(INSTALL) -D $(PKGCONFIG) $(DESTDIR)$(PKGCONFIG_DIR)/$(PKGCONFIG)
+ 	rm $(PKGCONFIG)
+ endif
+ 	$(INSTALL) -D keyctl $(DESTDIR)$(BINDIR)/keyctl
