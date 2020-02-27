@@ -9,12 +9,12 @@
 Summary:	Linux Key Management Utilities
 Summary(pl.UTF-8):	Narzędzia do linuksowego zarządzania kluczami
 Name:		keyutils
-Version:	1.6
+Version:	1.6.1
 Release:	1
 License:	LGPL v2+ (library), GPL v2+ (utility)
 Group:		Base
 Source0:	http://people.redhat.com/~dhowells/keyutils/%{name}-%{version}.tar.bz2
-# Source0-md5:	191987b0ab46bb5b50efd70a6e6ce808
+# Source0-md5:	919af7f33576816b423d537f8a8692e8
 Patch0:		helpers.patch
 Patch1:		%{name}-pkgconfigdir.patch
 URL:		https://git.kernel.org/pub/scm/linux/kernel/git/dhowells/keyutils.git
