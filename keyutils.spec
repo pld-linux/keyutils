@@ -13,7 +13,7 @@ Version:	1.6.1
 Release:	1
 License:	LGPL v2+ (library), GPL v2+ (utility)
 Group:		Base
-Source0:	http://people.redhat.com/~dhowells/keyutils/%{name}-%{version}.tar.bz2
+Source0:	https://people.redhat.com/~dhowells/keyutils/%{name}-%{version}.tar.bz2
 # Source0-md5:	919af7f33576816b423d537f8a8692e8
 Patch0:		helpers.patch
 Patch1:		%{name}-pkgconfigdir.patch
