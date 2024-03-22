@@ -1,12 +1,12 @@
 Summary:	Linux Key Management Utilities
 Summary(pl.UTF-8):	Narzędzia do linuksowego zarządzania kluczami
 Name:		keyutils
-Version:	1.6.1
+Version:	1.6.3
 Release:	1
 License:	LGPL v2+ (library), GPL v2+ (utility)
 Group:		Base
-Source0:	https://people.redhat.com/~dhowells/keyutils/%{name}-%{version}.tar.bz2
-# Source0-md5:	919af7f33576816b423d537f8a8692e8
+Source0:	https://git.kernel.org/pub/scm/linux/kernel/git/dhowells/keyutils.git/snapshot/%{name}-%{version}.tar.gz
+# Source0-md5:	6b70b2b381c1b6d9adfaf66d5d3e7c00
 Patch0:		helpers.patch
 Patch1:		%{name}-pkgconfigdir.patch
 URL:		https://git.kernel.org/pub/scm/linux/kernel/git/dhowells/keyutils.git
@@ -104,6 +104,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_datadir}/keyutils/*.sh
 %{_mandir}/man1/keyctl.1*
 %{_mandir}/man5/request-key.conf.5*
+%{_mandir}/man5/key.dns_resolver.conf.5*
 %{_mandir}/man8/key.dns_resolver.8*
 %{_mandir}/man8/request-key.8*
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/request-key.conf
